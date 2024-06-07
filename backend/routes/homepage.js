@@ -10,5 +10,13 @@ Router.get('/Intro',(req,res)=>{
     }
     
 })
+Router.get('/AboutUs',(req,res)=>{
+    try {
+        console.log('About us');
+        res.status(200).send('About us');
+    } catch (error) {
+        
+    }
+})
 export default Router
 //here we are exporting Router 
