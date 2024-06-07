@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import homepage from './routes/homepage.js';
+
 const app=express();
 
 dotenv.config();
@@ -21,6 +23,7 @@ mongoose.connection.on("disconnected",()=>{
 mongoose.connection.on("connected",()=>{
     console.log("bhai ! bas kr connect ho gya ");
 })
+app.use("/Home/",homepage);
 app.listen(port,()=>{
     console.log('Connected to '+ port);
     connect();
