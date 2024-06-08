@@ -1,13 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import homepage from './routes/homepage.js';
-
+import hotel from './routes/hotels.js';
+import user from './routes/users.js';
 const app=express();
 
 dotenv.config();
 const port=process.env.PORT;
-
+//to connect to the mongo db
 const connect=async()=>{
     try {
         await mongoose.connect(process.env.MONGODBURL);
@@ -23,7 +23,19 @@ mongoose.connection.on("disconnected",()=>{
 mongoose.connection.on("connected",()=>{
     console.log("bhai ! bas kr connect ho gya ");
 })
-app.use("/Home/",homepage);
+
+//middlewares
+
+app.use(express.json());
+app.use("/Hotel/",hotel);
+app.use('/Users/',user);
+
+
+app.use((err,req,res,next)=>{
+    return res.status(500).json(err);
+})
+
+
 app.listen(port,()=>{
     console.log('Connected to '+ port);
     connect();
