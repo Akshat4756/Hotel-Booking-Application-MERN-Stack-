@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import hotel from './routes/hotels.js';
 import user from './routes/users.js';
+import cookieParser from 'cookie-parser';
+import auth from './routes/auth.js';
+
 const app=express();
 
 dotenv.config();
@@ -25,13 +28,15 @@ mongoose.connection.on("connected",()=>{
 })
 
 //middlewares
-
+app.use(cookieParser());
 app.use(express.json());
 app.use("/Hotel/",hotel);
 app.use('/Users/',user);
+app.use('/auth/',auth);
 
 
 app.use((err,req,res,next)=>{
+    console.log(err);
     return res.status(500).json(err);
 })
 
