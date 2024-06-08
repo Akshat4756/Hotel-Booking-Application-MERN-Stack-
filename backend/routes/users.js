@@ -1,11 +1,13 @@
 import express from 'express'
+import { verifyUser } from "../utilities/verifyToken.js";
 const Router=express.Router();
-import { deleteuser, register } from '../controllers/user.js';
+import { deleteuser, getAllUser, login, register, updateUser } from '../controllers/user.js';
 
 Router.post('/AddUser',register);
-// Router.get('/',);
-// Router.put('/UpdateUser/:id',);
-Router.delete('/DeleteUser/:id',deleteuser);
+Router.get('/',getAllUser);
+Router.put('/UpdateUser/:id',verifyUser,updateUser);
+Router.delete('/DeleteUser/:id',verifyUser,deleteuser);
+Router.get('/Login',login);
 // Router.get('/getUser/:id')
 
 export default Router;
