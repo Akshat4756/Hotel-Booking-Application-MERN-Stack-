@@ -21,7 +21,7 @@ const roomSchema=mongoose.Schema({
     roomNumbers:[{
         number:Number,
         unavailableDates:{
-            type:[Dates]
+            type:[Date]
         }
     }],
 },{timestamps:true}

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import hotel from './routes/hotels.js';
 import user from './routes/users.js';
+import room from './routes/room.js';
 import cookieParser from 'cookie-parser';
 import auth from './routes/auth.js';
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/Hotel/",hotel);
 app.use('/Users/',user);
+app.use('/Rooms/',room);
 app.use('/auth/',auth);
 
 
